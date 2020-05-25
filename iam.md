@@ -33,9 +33,9 @@
 
 
 ### To create custom IAM roles, you need the following permissions:
-    - resourcemanager.projects.get
-    - resourcemanager.projects.getIamPolicy
-    - resourcemanager.projects.setIamPolicy
+    resourcemanager.projects.get
+    resourcemanager.projects.getIamPolicy
+    resourcemanager.projects.setIamPolicy
 
 
 ## Service Accounts
