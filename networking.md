@@ -242,3 +242,9 @@ LAB! Create kubenetes clusters & add network policies to them
     - You can view traffic logs in Stackdriver
     - You can put up to 5 IP addresses or ranges per rule
     - Preview mode allows you to see the rule in action without it being enforced, so you as the engineer know whether the rule should be enforced or not
+
+
+## DNS & CDN Network Services
+
+### Cloud DNS & CDN
+    - 
