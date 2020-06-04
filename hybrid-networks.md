@@ -41,4 +41,37 @@
     - If the MED for 2 VPN tunnels is the same, GCP will use ECMP to balance traffic across both links
     - GCP recommends active/passive routing on HA VPN, because if a link fails on an active/active set up, it can cause some issues in terms of available bandwidth
     - Classic VPN offers 99.9% uptime
-    - 
+
+### vLAN Attachments
+    - You can limit bandwidth for specific vLAN attachments. If there is available capacity, the limit is not enforced
+    - With partner interconnect, our service provider provides a portion of a shared connection to GCP using layer 2 or layer 3 connectivity
+    - Pairing key is given to our service provider in order for them to connect their network equipment with our VPC network
+    - If there's maintenance in a colocation zone 1, that will be across all zone 1's. This is why it's important to have connections in multiple zones in the colocation facilities
+
+### Cloud Router
+    - Dynamically exchange routes between on-premises and GCP networks
+    - Uses BGP to exchange routes
+    - Subnets between on-premises and GCP cannot overlap
+    - Regional Mode - cloud router only shares the subnets that were created within that region
+    - Global Mode - cloud router lets you dynamically learn routes to and from all regions
+
+### Peered Connections
+    - Useful for cutting egress fees from GCP
+    - No setup or maintenance costs to set this up
+    - Reduce latency and increased availability
+    - Direct Peering, Carrier Peering & Private Peering
+    - Direct Peering requirements
+        - Publically routable ASN
+        - Publically routable address space
+        - ASN record in peering DB
+
+### Highly Available Connections
+    - Google recommends 4 9's of availability
+    - Billing credits are issued to the customer if the target availability times are not met
+    - 99.99% design requires 4 cloud routers, 4 interconnects, 4 interconnects to colocation facilities
+    - MED is used to distinguish the same advertised networks
+    - MED values are set on the on-premises connection. If none are set, Cloud Router assumes the highest possible MED value of 0
+    - A single cloud router does support multiple connected interfaces and multiple endpoints. However, each cloud router must use the same ASN number for all of its BGP sessions EXCEPT for partner interconnect
+    - ECMP is used when the connections have the same MED value
+    - You cannot connect a single cloud router to multiple ASN numbers defined on-premises. If this happens, the cloud router will only accept routes from the lowest ASN number
+    - MTU is 1460 over VPN tunnels
